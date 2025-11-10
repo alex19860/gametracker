@@ -22,13 +22,14 @@ body {
     background-color: var(--color-neon);
 }
 
-/* Sidebar */
+/* Sidebar (Aparece apenas em telas grandes) */
 .sidebar {
     position: sticky;
     top: 0;
-    height: 100vh;
+    /* Remover height: 100vh; no CSS puro, pois já usamos a classe h-screen no HTML */
 }
 
+/* 🚨 NOVIDADE: Estilo da navegação da Sidebar (LG) */
 .nav-item {
     color: #9ca3af; /* gray-400 */
 }
@@ -42,6 +43,32 @@ body {
 .nav-item.active i {
     color: var(--color-neon);
 }
+
+/* 🚨 NOVIDADE: Estilos para Mobile Bottom Nav */
+.nav-item-mobile {
+    color: #9ca3af; /* gray-400 */
+    text-decoration: none;
+}
+
+.nav-item-mobile.active {
+    color: var(--color-neon); /* neon */
+    font-weight: 600;
+}
+
+/* 🚨 NOVIDADE: Ajuste de padding para evitar que o conteúdo seja cortado pelo menu fixo inferior */
+.main-content-mobile {
+    /* Padding inferior (padding-bottom) para dar espaço ao menu fixo, 
+       mas apenas em telas pequenas (onde o menu aparece) */
+    padding-bottom: 70px; /* Altura do menu inferior + um pouco de margem */
+}
+
+@media (min-width: 1024px) { /* lg breakpoint do Tailwind */
+    .main-content-mobile {
+        /* Remove o padding extra em telas grandes, já que a sidebar está visível */
+        padding-bottom: 2rem; /* p-8 do Tailwind */
+    }
+}
+
 
 /* Game Cards */
 .game-card {
@@ -58,18 +85,13 @@ body {
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
 }
 
-.game-card img {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-}
-
 /* Status Badges */
 .status-badge {
     padding: 0.25rem 0.75rem;
-    border-radius: 9999px; /* full rounded */
-    font-size: 0.75rem; /* text-xs */
-    font-weight: 600; /* font-semibold */
-    color: #111827; /* gray-900 */
+    border-radius: 9999px; 
+    font-size: 0.75rem; 
+    font-weight: 600; 
+    color: #111827; 
 }
 
 .status-playing {
@@ -88,7 +110,7 @@ body {
     background-color: #f59e0b; /* yellow-500 */
 }
 
-/* Animations (opcional, se não usar Anime.js diretamente) */
+/* Ocultar/Animações (mantido do original) */
 .page {
     opacity: 0;
     transform: translateY(20px);
