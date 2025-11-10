@@ -4,14 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GameTracker</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+<link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-gray-900 text-white font-inter antialiased">
-    <div class="flex min-h-screen">
-        <aside class="sidebar w-64 bg-gray-800 p-6 flex flex-col justify-between transition-transform duration-300 ease-out">
+    
+    <div class="flex min-h-screen lg:flex-row flex-col">
+        
+<aside class="sidebar w-64 bg-gray-800 p-6 flex-col justify-between transition-transform duration-300 ease-out hidden lg:flex sticky top-0 h-screen">
             <div>
                 <div class="text-3xl font-bold mb-8 text-neon">
                     GameTracker
@@ -47,163 +53,168 @@
             </div>
         </aside>
 
-        <main class="flex-1 p-8">
+        <main class="flex-1 p-4 lg:p-8 main-content-mobile">
+            
             <section id="dashboardPage" class="page">
-                <h1 class="text-4xl font-bold mb-8 text-neon">Dashboard</h1>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg flex items-center justify-between">
+                <h1 class="text-3xl lg:text-4xl font-bold mb-6 text-neon">Dashboard</h1>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8 mb-8">
+                    <div class="bg-gray-800 p-4 lg:p-6 rounded-lg shadow-lg flex items-center justify-between">
                         <div>
-                            <h2 class="text-xl font-semibold text-gray-300">Total de Jogos</h2>
-                            <p class="text-5xl font-bold text-neon" id="totalGamesDashboard">0</p>
+                            <h2 class="text-lg font-semibold text-gray-300">Total de Jogos</h2>
+                            <p class="text-4xl lg:text-5xl font-bold text-neon" id="totalGamesDashboard">0</p>
                         </div>
-                        <i class="fas fa-dice-d6 text-6xl text-gray-600"></i>
+                        <i class="fas fa-dice-d6 text-5xl lg:text-6xl text-gray-600"></i>
                     </div>
-                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg flex items-center justify-between">
+                    <div class="bg-gray-800 p-4 lg:p-6 rounded-lg shadow-lg flex items-center justify-between">
                         <div>
-                            <h2 class="text-xl font-semibold text-gray-300">Jogando Agora</h2>
-                            <p class="text-5xl font-bold text-blue-500" id="playingCountDashboard">0</p>
+                            <h2 class="text-lg font-semibold text-gray-300">Jogando Agora</h2>
+                            <p class="text-4xl lg:text-5xl font-bold text-blue-500" id="playingCountDashboard">0</p>
                         </div>
-                        <i class="fas fa-play-circle text-6xl text-gray-600"></i>
+                        <i class="fas fa-play-circle text-5xl lg:text-6xl text-gray-600"></i>
                     </div>
-                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg flex items-center justify-between">
+                    <div class="bg-gray-800 p-4 lg:p-6 rounded-lg shadow-lg flex items-center justify-between">
                         <div>
-                            <h2 class="text-xl font-semibold text-gray-300">Completos</h2>
-                            <p class="text-5xl font-bold text-green-500" id="completedCountDashboard">0</p>
+                            <h2 class="text-lg font-semibold text-gray-300">Completos</h2>
+                            <p class="text-4xl lg:text-5xl font-bold text-green-500" id="completedCountDashboard">0</p>
                         </div>
-                        <i class="fas fa-check-circle text-6xl text-gray-600"></i>
+                        <i class="fas fa-check-circle text-5xl lg:text-6xl text-gray-600"></i>
                     </div>
                 </div>
 
-                <h2 class="text-3xl font-bold mb-6 text-neon">Jogos em Destaque</h2>
-                <div id="featuredGames" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="game-card p-4 bg-gray-800 rounded-lg animate-pulse">
-                        <div class="w-full h-48 bg-gray-700 rounded-lg mb-4"></div>
-                        <div class="h-6 bg-gray-700 rounded w-3/4 mb-2"></div>
-                        <div class="h-4 bg-gray-700 rounded w-1/2"></div>
+                <h2 class="text-2xl lg:text-3xl font-bold mb-4 text-neon">Jogos em Destaque</h2>
+                <div id="featuredGames" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6">
+                    <div class="game-card p-3 bg-gray-800 rounded-lg animate-pulse">
+                        <div class="w-full h-32 lg:h-48 bg-gray-700 rounded-lg mb-2"></div>
+                        <div class="h-4 bg-gray-700 rounded w-3/4 mb-1"></div>
+                        <div class="h-3 bg-gray-700 rounded w-1/2"></div>
                     </div>
-                    <div class="game-card p-4 bg-gray-800 rounded-lg animate-pulse">
-                        <div class="w-full h-48 bg-gray-700 rounded-lg mb-4"></div>
-                        <div class="h-6 bg-gray-700 rounded w-3/4 mb-2"></div>
-                        <div class="h-4 bg-gray-700 rounded w-1/2"></div>
+                    <div class="game-card p-3 bg-gray-800 rounded-lg animate-pulse">
+                        <div class="w-full h-32 lg:h-48 bg-gray-700 rounded-lg mb-2"></div>
+                        <div class="h-4 bg-gray-700 rounded w-3/4 mb-1"></div>
+                        <div class="h-3 bg-gray-700 rounded w-1/2"></div>
                     </div>
-                    <div class="game-card p-4 bg-gray-800 rounded-lg animate-pulse">
-                        <div class="w-full h-48 bg-gray-700 rounded-lg mb-4"></div>
-                        <div class="h-6 bg-gray-700 rounded w-3/4 mb-2"></div>
-                        <div class="h-4 bg-gray-700 rounded w-1/2"></div>
+                    <div class="game-card p-3 bg-gray-800 rounded-lg animate-pulse">
+                        <div class="w-full h-32 lg:h-48 bg-gray-700 rounded-lg mb-2"></div>
+                        <div class="h-4 bg-gray-700 rounded w-3/4 mb-1"></div>
+                        <div class="h-3 bg-gray-700 rounded w-1/2"></div>
                     </div>
-                    <div class="game-card p-4 bg-gray-800 rounded-lg animate-pulse">
-                        <div class="w-full h-48 bg-gray-700 rounded-lg mb-4"></div>
-                        <div class="h-6 bg-gray-700 rounded w-3/4 mb-2"></div>
-                        <div class="h-4 bg-gray-700 rounded w-1/2"></div>
+                    <div class="game-card p-3 bg-gray-800 rounded-lg animate-pulse hidden lg:block">
+                        <div class="w-full h-32 lg:h-48 bg-gray-700 rounded-lg mb-2"></div>
+                        <div class="h-4 bg-gray-700 rounded w-3/4 mb-1"></div>
+                        <div class="h-3 bg-gray-700 rounded w-1/2"></div>
                     </div>
                 </div>
             </section>
 
+            
             <section id="searchPage" class="page hidden">
-                <h1 class="text-4xl font-bold mb-8 text-neon">Buscar Jogos</h1>
+                <h1 class="text-3xl lg:text-4xl font-bold mb-6 text-neon">Buscar Jogos</h1>
                 <div class="search-container relative w-full max-w-2xl mx-auto mb-8">
                     <input type="text" id="searchInput" placeholder="Buscar por nome do jogo..."
-                           class="w-full px-6 py-4 rounded-full bg-gray-800 text-white border border-gray-700 focus:outline-none focus:border-neon text-lg pr-16 shadow-md">
-                    <span class="absolute right-6 top-1/2 transform -translate-y-1/2 text-gray-400">
-                        <i id="searchIcon" class="fas fa-search text-xl"></i>
-                        <i id="searchLoading" class="fas fa-spinner fa-spin text-xl hidden"></i>
+                           class="w-full px-4 py-3 lg:px-6 lg:py-4 rounded-full bg-gray-800 text-white border border-gray-700 focus:outline-none focus:border-neon text-base lg:text-lg pr-16 shadow-md">
+                    <span class="absolute right-4 lg:right-6 top-1/2 transform -translate-y-1/2 text-gray-400">
+                        <i id="searchIcon" class="fas fa-search text-lg lg:text-xl"></i>
+                        <i id="searchLoading" class="fas fa-spinner fa-spin text-lg lg:text-xl hidden"></i>
                     </span>
-                    <div id="searchResults" class="absolute left-0 right-0 mt-2 bg-gray-800 border border-gray-700 rounded-lg shadow-lg max-h-96 overflow-y-auto z-10 hidden">
+                    <div id="searchResults" class="absolute left-0 right-0 mt-2 bg-gray-800 border border-gray-700 rounded-lg shadow-lg max-h-80 overflow-y-auto z-10 hidden">
                         </div>
                 </div>
 
-                <div id="searchDetails" class="mt-12 hidden">
+                <div id="searchDetails" class="mt-8 hidden">
                     </div>
             </section>
 
+            
             <section id="libraryPage" class="page hidden">
-                <h1 class="text-4xl font-bold mb-8 text-neon">Minha Biblioteca</h1>
-                <div class="flex flex-wrap gap-4 mb-8">
-                    <button class="filter-btn active px-5 py-2 rounded-full border border-neon bg-gray-700 transition-all duration-200" data-filter="all">
+                <h1 class="text-3xl lg:text-4xl font-bold mb-6 text-neon">Minha Biblioteca</h1>
+                <div class="flex flex-wrap gap-2 lg:gap-4 mb-6 lg:mb-8 text-sm lg:text-base">
+                    <button class="filter-btn active px-4 py-1 rounded-full border border-neon bg-gray-700 transition-all duration-200" data-filter="all">
                         Todos (<span id="count-all">0</span>)
                     </button>
-                    <button class="filter-btn px-5 py-2 rounded-full border border-gray-600 hover:border-neon transition-all duration-200" data-filter="playing">
+                    <button class="filter-btn px-4 py-1 rounded-full border border-gray-600 hover:border-neon transition-all duration-200" data-filter="playing">
                         Jogando (<span id="count-playing">0</span>)
                     </button>
-                    <button class="filter-btn px-5 py-2 rounded-full border border-gray-600 hover:border-neon transition-all duration-200" data-filter="completed">
+                    <button class="filter-btn px-4 py-1 rounded-full border border-gray-600 hover:border-neon transition-all duration-200" data-filter="completed">
                         Completos (<span id="count-completed">0</span>)
                     </button>
-                    <button class="filter-btn px-5 py-2 rounded-full border border-gray-600 hover:border-neon transition-all duration-200" data-filter="wishlist">
+                    <button class="filter-btn px-4 py-1 rounded-full border border-gray-600 hover:border-neon transition-all duration-200" data-filter="wishlist">
                         Quero Jogar (<span id="count-wishlist">0</span>)
                     </button>
-                    <button class="filter-btn px-5 py-2 rounded-full border border-gray-600 hover:border-neon transition-all duration-200" data-filter="abandoned">
+                    <button class="filter-btn px-4 py-1 rounded-full border border-gray-600 hover:border-neon transition-all duration-200" data-filter="abandoned">
                         Abandonados (<span id="count-abandoned">0</span>)
                     </button>
                 </div>
 
-                <div id="libraryGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div id="libraryGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6">
                     </div>
             </section>
 
+            
             <section id="statsPage" class="page hidden">
-                <h1 class="text-4xl font-bold mb-8 text-neon">Estatísticas da Biblioteca</h1>
+                <h1 class="text-3xl lg:text-4xl font-bold mb-6 text-neon">Estatísticas</h1>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg flex items-center justify-between">
-                        <div>
-                            <h2 class="text-xl font-semibold text-gray-300">Total de Jogos</h2>
-                            <p class="text-5xl font-bold text-neon" id="totalGames">0</p>
-                        </div>
-                        <i class="fas fa-dice-d6 text-6xl text-gray-600"></i>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-8 mb-8">
+                    <div class="bg-gray-800 p-4 lg:p-6 rounded-lg shadow-lg">
+                        <h2 class="text-sm lg:text-xl font-semibold text-gray-300">Total</h2>
+                        <p class="text-3xl lg:text-5xl font-bold text-neon" id="totalGames">0</p>
                     </div>
-                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg flex items-center justify-between">
-                        <div>
-                            <h2 class="text-xl font-semibold text-gray-300">Jogos Jogando</h2>
-                            <p class="text-5xl font-bold text-blue-500" id="playingCount">0</p>
-                        </div>
-                        <i class="fas fa-play-circle text-6xl text-gray-600"></i>
+                    <div class="bg-gray-800 p-4 lg:p-6 rounded-lg shadow-lg">
+                        <h2 class="text-sm lg:text-xl font-semibold text-gray-300">Jogando</h2>
+                        <p class="text-3xl lg:text-5xl font-bold text-blue-500" id="playingCount">0</p>
                     </div>
-                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg flex items-center justify-between">
-                        <div>
-                            <h2 class="text-xl font-semibold text-gray-300">Jogos Completos</h2>
-                            <p class="text-5xl font-bold text-green-500" id="completedCount">0</p>
-                        </div>
-                        <i class="fas fa-check-circle text-6xl text-gray-600"></i>
+                    <div class="bg-gray-800 p-4 lg:p-6 rounded-lg shadow-lg">
+                        <h2 class="text-sm lg:text-xl font-semibold text-gray-300">Completos</h2>
+                        <p class="text-3xl lg:text-5xl font-bold text-green-500" id="completedCount">0</p>
                     </div>
-                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg flex items-center justify-between">
-                        <div>
-                            <h2 class="text-xl font-semibold text-gray-300">Lista de Desejos</h2>
-                            <p class="text-5xl font-bold text-yellow-500" id="wishlistCount">0</p>
-                        </div>
-                        <i class="fas fa-heart text-6xl text-gray-600"></i>
+                    <div class="bg-gray-800 p-4 lg:p-6 rounded-lg shadow-lg">
+                        <h2 class="text-sm lg:text-xl font-semibold text-gray-300">Desejos</h2>
+                        <p class="text-3xl lg:text-5xl font-bold text-yellow-500" id="wishlistCount">0</p>
                     </div>
                 </div>
 
-                <div class="bg-gray-800 p-8 rounded-lg shadow-lg">
-                    <h2 class="text-2xl font-bold mb-6 text-neon">Distribuição de Status</h2>
-                    <canvas id="statusChart" class="w-full h-80"></canvas>
+                <div class="bg-gray-800 p-4 lg:p-8 rounded-lg shadow-lg">
+                    <h2 class="text-xl lg:text-2xl font-bold mb-4 text-neon">Distribuição de Status</h2>
+                    <canvas id="statusChart" class="w-full h-64 lg:h-80"></canvas>
                 </div>
             </section>
         </main>
     </div>
 
+    
     <div id="gameModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden p-4">
-        <div class="bg-gray-800 rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto relative p-8">
-            <button class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl" onclick="closeModal()">
+        <div class="bg-gray-800 rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto relative p-6 lg:p-8">
+            <button class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl lg:text-2xl" onclick="closeModal()">
                 <i class="fas fa-times"></i>
             </button>
-            <h3 id="modalTitle" class="text-3xl font-bold mb-6 text-neon"></h3>
+            <h3 id="modalTitle" class="text-2xl lg:text-3xl font-bold mb-4 text-neon"></h3>
             <div id="modalContent">
-                <div class="animate-pulse">
-                    <div class="w-full h-64 bg-gray-700 rounded-lg mb-4"></div>
-                    <div class="grid grid-cols-2 gap-4 mb-4">
-                        <div><div class="h-6 bg-gray-700 rounded w-2/3 mb-2"></div><div class="h-4 bg-gray-700 rounded w-full"></div></div>
-                        <div><div class="h-6 bg-gray-700 rounded w-2/3 mb-2"></div><div class="h-4 bg-gray-700 rounded w-full"></div></div>
-                    </div>
-                    <div class="h-4 bg-gray-700 rounded w-full mb-2"></div>
-                    <div class="h-4 bg-gray-700 rounded w-11/12 mb-4"></div>
-                    <div class="flex gap-4"><div class="h-10 bg-gray-700 rounded-lg w-32"></div><div class="h-10 bg-gray-700 rounded-lg w-32"></div></div>
                 </div>
-            </div>
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <script src="script.js"></script>
+    
+    <nav class="fixed bottom-0 left-0 right-0 bg-gray-800 border-t border-gray-700 p-2 flex justify-around lg:hidden z-40" id="bottomNavBar">
+        <a href="#" class="nav-item-mobile active flex flex-col items-center p-1 rounded-lg text-xs transition-colors w-1/4" onclick="showPage('dashboard')">
+            <i class="fas fa-home text-lg mb-1"></i>
+            <span class="hidden sm:inline">Dashboard</span>
+        </a>
+        <a href="#" class="nav-item-mobile flex flex-col items-center p-1 rounded-lg text-xs transition-colors w-1/4" onclick="showPage('search')">
+            <i class="fas fa-search text-lg mb-1"></i>
+            <span class="hidden sm:inline">Buscar</span>
+        </a>
+        <a href="#" class="nav-item-mobile flex flex-col items-center p-1 rounded-lg text-xs transition-colors w-1/4" onclick="showPage('library')">
+            <i class="fas fa-gamepad text-lg mb-1"></i>
+            <span class="hidden sm:inline">Biblioteca</span>
+        </a>
+        <a href="#" class="nav-item-mobile flex flex-col items-center p-1 rounded-lg text-xs transition-colors w-1/4" onclick="showPage('stats')">
+            <i class="fas fa-chart-bar text-lg mb-1"></i>
+            <span class="hidden sm:inline">Estatísticas</span>
+        </a>
+    </nav>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    
+<script src="script.js"></script>
 </body>
+</html>
 </html>
