@@ -497,6 +497,8 @@ class GameTracker {
         });
     }
     
+    // ... (Código anterior do GameTracker)
+
     showPage(pageId) {
         // Esconde todas as páginas
         document.querySelectorAll('.page').forEach(page => {
@@ -509,10 +511,11 @@ class GameTracker {
             targetPage.classList.remove('hidden');
         }
         
-        // Atualiza a navegação
+        this.currentPage = pageId;
+
+        // 1. 🚨 Atualiza a navegação da Sidebar (LG screens)
         document.querySelectorAll('.nav-item').forEach(item => {
-            item.classList.remove('active');
-            item.classList.remove('text-neon', 'font-semibold', 'bg-gray-700');
+            item.classList.remove('active', 'text-neon', 'font-semibold', 'bg-gray-700');
             item.classList.add('text-gray-400');
         });
         
@@ -521,10 +524,18 @@ class GameTracker {
             activeNavItem.classList.add('active', 'text-neon', 'font-semibold', 'bg-gray-700');
             activeNavItem.classList.remove('text-gray-400');
         }
-        
-        this.currentPage = pageId;
-        
-        // Atualiza o conteúdo específico da página
+
+        // 2. 🚨 Atualiza a navegação inferior (Mobile screens)
+        document.querySelectorAll('.nav-item-mobile').forEach(item => {
+            item.classList.remove('active');
+        });
+
+        const activeMobileNavItem = document.querySelector(`.nav-item-mobile[onclick*="showPage('${pageId}')"]`);
+        if (activeMobileNavItem) {
+            activeMobileNavItem.classList.add('active');
+        }
+
+        // 3. Atualiza o conteúdo específico da página
         if (pageId === 'library') {
             const activeFilterButton = document.querySelector('.filter-btn.active');
             const activeFilter = activeFilterButton ? activeFilterButton.dataset.filter : 'all';
@@ -532,10 +543,12 @@ class GameTracker {
         } else if (pageId === 'stats') {
             this.updateStats();
         } else if (pageId === 'dashboard') {
-            this.loadFeaturedGames(); // Recarrega os jogos em destaque no dashboard
-            this.updateUI(); // Atualiza os contadores do dashboard
+            this.loadFeaturedGames(); 
+            this.updateUI(); 
         }
     }
+
+// ... (Resto do código do GameTracker)
     
     closeModal() {
         document.getElementById('gameModal').classList.add('hidden');
@@ -616,4 +629,5 @@ function closeModal() {
 }
 
 // Inicializa a aplicação
+
 const gameTracker = new GameTracker();
