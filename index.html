@@ -1,130 +1,296 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Protótipo Metroidvania - Pixel Art</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Churrasco</title>
     <style>
-        body { background: #222; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        canvas { background: #333; border: 4px solid #fff; image-rendering: pixelated; }
+        :root {
+            --primary-color: #d32f2f; /* Vermelho Churrasco */
+            --secondary-color: #f4f4f4;
+            --text-color: #333;
+            --card-bg: #fff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            text-align: center;
+            margin-bottom: 40px;
+            background: #ffebee;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        label {
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="number"] {
+            padding: 10px;
+            font-size: 1.5rem;
+            width: 100px;
+            text-align: center;
+            border: 2px solid var(--primary-color);
+            border-radius: 5px;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .category-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            background: #fafafa;
+        }
+
+        .category-card h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+            font-size: 1.4rem;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+
+        .item-name {
+            font-weight: 500;
+        }
+
+        .item-value {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .obs {
+            font-size: 0.8rem;
+            color: #777;
+            font-style: italic;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #888;
+        }
     </style>
 </head>
 <body>
 
-<canvas id="gameCanvas" width="800" height="400"></canvas>
+<div class="container">
+    <h1>🔥 Calculadora de Churrasco</h1>
+
+    <div class="input-group">
+        <label for="pessoas">Quantidade de Pessoas:</label>
+        <input type="number" id="pessoas" value="10" min="1" oninput="calcular()">
+    </div>
+
+    <div class="results-grid">
+        
+        <!-- Carnes -->
+        <div class="category-card">
+            <h2>🥩 Carnes</h2>
+            <ul>
+                <li><span class="item-name">Carne Bovina</span> <span class="item-value" id="res-boi">-</span></li>
+                <li><span class="item-name">Carne Suína</span> <span class="item-value" id="res-porco">-</span></li>
+                <li><span class="item-name">Linguiça</span> <span class="item-value" id="res-linguica">-</span></li>
+                <li><span class="item-name">Frango</span> <span class="item-value" id="res-frango">-</span></li>
+            </ul>
+        </div>
+
+        <!-- Acompanhamentos -->
+        <div class="category-card">
+            <h2>🍚 Acompanhamentos</h2>
+            <ul>
+                <li><span class="item-name">Arroz</span> <span class="item-value" id="res-arroz">-</span></li>
+                <li><span class="item-name">Farofa (farinha)</span> <span class="item-value" id="res-farofa">-</span></li>
+                <li><span class="item-name">Batata</span> <span class="item-value" id="res-batata">-</span></li>
+                <li><span class="item-name">Pão</span> <span class="item-value" id="res-pao">-</span></li>
+            </ul>
+        </div>
+
+        <!-- Ingredientes Vinagrete/Maionese -->
+        <div class="category-card">
+            <h2>🥗 Temperos & Extras</h2>
+            <ul>
+                <li><span class="item-name">Maionese</span> <span class="item-value" id="res-maionese">-</span></li>
+                <li><span class="item-name">Calabresa (cubos)</span> <span class="item-value" id="res-calabresa">-</span></li>
+                <li><span class="item-name">Bacon</span> <span class="item-value" id="res-bacon">-</span></li>
+                <li><span class="item-name">Cebola</span> <span class="item-value" id="res-cebola">-</span></li>
+                <li><span class="item-name">Pimentão</span> <span class="item-value" id="res-pimentao">-</span></li>
+                <li><span class="item-name">Tomate</span> <span class="item-value" id="res-tomate">-</span></li>
+                <li><span class="item-name">Vinagre</span> <span class="item-value" id="res-vinagre">-</span></li>
+                <li><span class="item-name">Azeite</span> <span class="item-value" id="res-azeite">-</span></li>
+            </ul>
+        </div>
+
+        <!-- Bebidas -->
+        <div class="category-card">
+            <h2>🍻 Bebidas</h2>
+            <ul>
+                <li><span class="item-name">Cerveja (Latas 273ml)</span> <span class="item-value" id="res-cerveja-qtd">-</span></li>
+                <li><span class="item-name" style="font-size:0.9em">Total Cerveja</span> <span class="item-value obs" id="res-cerveja-vol">-</span></li>
+                
+                <li><span class="item-name">Refrigerante</span> <span class="item-value" id="res-refri">-</span></li>
+                <li><span class="item-name">Suco</span> <span class="item-value" id="res-suco">-</span></li>
+                
+                <li><span class="item-name">Vodka</span> <span class="item-value" id="res-vodka">-</span></li>
+                <li><span class="item-name">Groselha</span> <span class="item-value" id="res-groselha">-</span></li>
+                <li><span class="item-name">Soda</span> <span class="item-value" id="res-soda">-</span></li>
+                <li><span class="item-name">Suco (p/ vodka)</span> <span class="item-value" id="res-suco-vodka">-</span></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>Valores baseados na média de consumo por pessoa.</p>
+    </footer>
+</div>
 
 <script>
-const canvas = document.getElementById('gameCanvas');
-const ctx = canvas.getContext('2d');
-
-// Configurações do Sprite
-const spriteSheet = new Image();
-spriteSheet.src = 'watermarked_img_6953337215170635193.png'; // Use o nome do arquivo salvo
-
-const spriteW = 100; // Largura aproximada de cada frame (ajuste conforme necessário)
-const spriteH = 100; // Altura aproximada de cada frame
-const scale = 2;
-
-// Estados do Jogador
-let player = {
-    x: 50,
-    y: 200,
-    width: spriteW * scale,
-    height: spriteH * scale,
-    frameX: 0,
-    frameY: 0, // 0: Idle, 1: Andar, 2: Correr, 3: Pular, 4: Socar
-    speed: 4,
-    velY: 0,
-    jumping: false,
-    punching: false,
-    moving: false,
-    facingRight: true
-};
-
-const keys = {};
-
-window.addEventListener('keydown', e => keys[e.code] = true);
-window.addEventListener('keyup', e => keys[e.code] = false);
-
-function update() {
-    player.moving = false;
-
-    // Movimentação lateral
-    if (keys['ArrowRight']) {
-        player.x += player.speed;
-        player.facingRight = true;
-        player.moving = true;
-        player.frameY = keys['ShiftLeft'] ? 2 : 1; // Correr ou Andar
-    } else if (keys['ArrowLeft']) {
-        player.x -= player.speed;
-        player.facingRight = false;
-        player.moving = true;
-        player.frameY = keys['ShiftLeft'] ? 2 : 1;
+    function formatarPeso(valorGramas) {
+        if (valorGramas >= 1000) {
+            return (valorGramas / 1000).toFixed(2).replace('.', ',') + ' kg';
+        }
+        return Math.ceil(valorGramas) + ' g';
     }
 
-    // Pulo (Gravidade básica)
-    if (keys['Space'] && !player.jumping) {
-        player.velY = -15;
-        player.jumping = true;
-        player.frameY = 3;
+    function formatarVolume(valorMl) {
+        if (valorMl >= 1000) {
+            return (valorMl / 1000).toFixed(2).replace('.', ',') + ' L';
+        }
+        return Math.ceil(valorMl) + ' ml';
     }
 
-    // Ataque
-    if (keys['KeyZ']) {
-        player.punching = true;
-        player.frameY = 4;
-    } else {
-        player.punching = false;
+    function calcular() {
+        const pessoas = document.getElementById('pessoas').value;
+        
+        // Se estiver vazio ou zero, trata como 0
+        const qtd = pessoas ? parseFloat(pessoas) : 0;
+
+        // --- CÁRNES (em gramas) ---
+        const boi = qtd * 300;
+        const porco = qtd * 200;
+        const linguica = qtd * 230;
+        const frango = qtd * 200;
+
+        // --- ACOMPANHAMENTOS (em gramas/unidades) ---
+        const arroz = qtd * 40;
+        const farofa = qtd * 40;
+        const batata = qtd * 170;
+        const pao = qtd * 1; // Unidade
+
+        // --- VINAGRETE / MAIONESE / EXTRAS ---
+        const maionese = qtd * 20;
+        const calabresa = qtd * 20;
+        const bacon = qtd * 10;
+        const cebola = qtd * 20;
+        const pimentao = qtd * 20;
+        const tomate = qtd * 60;
+        const vinagre = qtd * 15; // ml
+        const azeite = qtd * 4;   // ml
+
+        // --- BEBIDAS ---
+        // Cerveja: 2 latas por pessoa
+        const latasPorPessoa = 2;
+        const totalLatas = qtd * latasPorPessoa; 
+        const volumeCervejaMl = totalLatas * 273;
+
+        const refri = qtd * 600;
+        const suco = qtd * 240;
+
+        // Drinks
+        const vodka = qtd * 40;
+        const groselha = qtd * 20;
+        const soda = qtd * 180;
+        const sucoVodka = qtd * 117;
+
+        // --- ATUALIZAR TELA ---
+        
+        // Carnes
+        document.getElementById('res-boi').innerText = formatarPeso(boi);
+        document.getElementById('res-porco').innerText = formatarPeso(porco);
+        document.getElementById('res-linguica').innerText = formatarPeso(linguica);
+        document.getElementById('res-frango').innerText = formatarPeso(frango);
+
+        // Acompanhamentos
+        document.getElementById('res-arroz').innerText = formatarPeso(arroz);
+        document.getElementById('res-farofa').innerText = formatarPeso(farofa);
+        document.getElementById('res-batata').innerText = formatarPeso(batata);
+        document.getElementById('res-pao').innerText = Math.ceil(pao) + ' un.';
+
+        // Extras
+        document.getElementById('res-maionese').innerText = formatarPeso(maionese);
+        document.getElementById('res-calabresa').innerText = formatarPeso(calabresa);
+        document.getElementById('res-bacon').innerText = formatarPeso(bacon);
+        document.getElementById('res-cebola').innerText = formatarPeso(cebola);
+        document.getElementById('res-pimentao').innerText = formatarPeso(pimentao);
+        document.getElementById('res-tomate').innerText = formatarPeso(tomate);
+        document.getElementById('res-vinagre').innerText = formatarVolume(vinagre);
+        document.getElementById('res-azeite').innerText = formatarVolume(azeite);
+
+        // Bebidas
+        document.getElementById('res-cerveja-qtd').innerText = Math.ceil(totalLatas) + ' latas';
+        document.getElementById('res-cerveja-vol').innerText = '(' + formatarVolume(volumeCervejaMl) + ')';
+        
+        document.getElementById('res-refri').innerText = formatarVolume(refri);
+        document.getElementById('res-suco').innerText = formatarVolume(suco);
+        
+        document.getElementById('res-vodka').innerText = formatarVolume(vodka);
+        document.getElementById('res-groselha').innerText = formatarVolume(groselha);
+        document.getElementById('res-soda').innerText = formatarVolume(soda);
+        document.getElementById('res-suco-vodka').innerText = formatarVolume(sucoVodka);
     }
 
-    // Física simples
-    player.velY += 0.8; // Gravidade
-    player.y += player.velY;
-
-    if (player.y > 200) {
-        player.y = 200;
-        player.jumping = false;
-        player.velY = 0;
-    }
-
-    // Reset para IDLE
-    if (!player.moving && !player.jumping && !player.punching) {
-        player.frameY = 0;
-    }
-
-    // Animação dos frames (loop simples)
-    if (Date.now() % 100 < 20) { 
-        player.frameX = (player.frameX + 1) % 6; 
-    }
-}
-
-function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    // Chão simples
-    ctx.fillStyle = '#555';
-    ctx.fillRect(0, 300, canvas.width, 100);
-
-    ctx.save();
-    
-    // Lógica para virar o sprite
-    if (!player.facingRight) {
-        ctx.translate(player.x + player.width, player.y);
-        ctx.scale(-1, 1);
-        ctx.drawImage(spriteSheet, player.frameX * spriteW, player.frameY * spriteH, spriteW, spriteH, 0, 0, player.width, player.height);
-    } else {
-        ctx.drawImage(spriteSheet, player.frameX * spriteW, player.frameY * spriteH, spriteW, spriteH, player.x, player.y, player.width, player.height);
-    }
-    
-    ctx.restore();
-}
-
-function loop() {
-    update();
-    draw();
-    requestAnimationFrame(loop);
-}
-
-spriteSheet.onload = () => loop();
+    // Calcular ao carregar a página
+    window.onload = calcular;
 </script>
 
 </body>
