@@ -238,8 +238,8 @@
         const azeite = qtd * 4;   // ml
 
         // --- BEBIDAS ---
-        // Cerveja: 2 latas por pessoa
-        const latasPorPessoa = 1,41;
+        // Cerveja: 1,41 latas por pessoa
+        const latasPorPessoa = 1.41;
         const totalLatas = qtd * latasPorPessoa; 
         const volumeCervejaMl = totalLatas * 273;
 
@@ -277,6 +277,7 @@
         document.getElementById('res-azeite').innerText = formatarVolume(azeite);
 
         // Bebidas
+        // Arredonda para cima o número de latas para não faltar
         document.getElementById('res-cerveja-qtd').innerText = Math.ceil(totalLatas) + ' latas';
         document.getElementById('res-cerveja-vol').innerText = '(' + formatarVolume(volumeCervejaMl) + ')';
         
